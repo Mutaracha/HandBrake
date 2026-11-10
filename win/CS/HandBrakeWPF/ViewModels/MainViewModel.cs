@@ -519,19 +519,8 @@ namespace HandBrakeWPF.ViewModels
                                                 ? this.selectedTitle.Chapters.Last().ChapterNumber
                                                 : 1;
 
-                    DefaultRangeMode defaultRangeMode = this.userSettingService.GetUserSetting<DefaultRangeMode>(UserSettingConstants.DefaultRangeMode);
-                    switch (defaultRangeMode)
-                    {
-                        case DefaultRangeMode.Chapters:
-                            this.SelectedPointToPoint = PointToPointMode.Chapters;
-                            break;
-                        case DefaultRangeMode.Frames:
-                            this.SelectedPointToPoint = PointToPointMode.Frames;
-                            break;
-                        case DefaultRangeMode.Seconds:
-                            this.SelectedPointToPoint = PointToPointMode.Seconds;
-                            break;
-                    }
+                    // Always start with time-based range selection when a new title is loaded.
+                    this.SelectedPointToPoint = PointToPointMode.Seconds;
 
                     this.SelectedAngle = 1;
 
