@@ -1074,6 +1074,11 @@ namespace HandBrakeWPF.ViewModels
                 return new AddQueueError(Resources.Main_MatchingFileOverwriteWarning, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+            if (this.userSettingService.GetUserSetting<bool>(UserSettingConstants.AutoIncrementQueueFilenames))
+            {
+                this.Destination = QueueFilenameHelper.GetUniquePath(this.Destination, this.IsPathUnique);
+            }
+
             if (File.Exists(this.CurrentTask.Destination))
             {
                 FileOverwriteBehaviour behaviour = (FileOverwriteBehaviour)this.userSettingService.GetUserSetting<int>(UserSettingConstants.FileOverwriteBehaviour);
@@ -2055,6 +2060,13 @@ namespace HandBrakeWPF.ViewModels
 
             var optionsViewModel = IoCHelper.Get<IOptionsViewModel>();
             optionsViewModel.UpdateSettings();
+        }
+
+        private bool IsPathUnique(string path)
+        {
+            return !File.Exists(path)
+                   && !this.queueProcessor.Queue.Any(
+                       task => string.Equals(task.Task?.Destination, path, StringComparison.OrdinalIgnoreCase));
         }
 
         public void ReGenerateAutoName()

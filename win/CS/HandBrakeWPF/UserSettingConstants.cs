@@ -19,6 +19,7 @@ namespace HandBrakeWPF
         public const string AutoNameRemoveUnderscore = "AutoNameRemoveUnderscore";
         public const string AutoNameTitleCase = "AutoNameTitleCase";
         public const string AutoNaming = "autoNaming";
+        public const string AutoIncrementQueueFilenames = "AutoIncrementQueueFilenames";
         public const string ClearOldLogs = "clearOldLogs";
         public const string DaysBetweenUpdateCheck = "daysBetweenUpdateCheck";
         public const string UseExternalPlayer = "previewUseExternalPlayer";

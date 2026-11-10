@@ -1154,6 +1154,9 @@ Hint: File overwrite behaviour can be controlled in preferences. </value>
   <data name="Options_AutoNameOutput" xml:space="preserve">
     <value>Automatically name output files</value>
   </data>
+  <data name="Options_AutoIncrementQueueFilenames" xml:space="preserve">
+    <value>Auto-increment filenames when adding to queue</value>
+  </data>
   <data name="Options_CheckForUpdates" xml:space="preserve">
     <value>Check for Updates</value>
   </data>

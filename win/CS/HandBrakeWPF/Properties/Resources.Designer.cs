@@ -4018,6 +4018,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto-increment filenames when adding to queue.
+        /// </summary>
+        public static string Options_AutoIncrementQueueFilenames {
+            get {
+                return ResourceManager.GetString("Options_AutoIncrementQueueFilenames", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Before Updating.
         /// </summary>
         public static string Options_BeforeUpdating {

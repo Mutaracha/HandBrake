@@ -53,6 +53,7 @@ namespace HandBrakeWPF.ViewModels
         private string arguments;
         private string autoNameDefaultPath;
         private bool automaticallyNameFiles;
+        private bool autoIncrementQueueFilenames;
         private string autonameFormat;
         private bool changeToTitleCase;
         private bool checkForUpdates;
@@ -544,6 +545,17 @@ namespace HandBrakeWPF.ViewModels
             {
                 this.automaticallyNameFiles = value;
                 this.NotifyOfPropertyChange(() => this.AutomaticallyNameFiles);
+            }
+        }
+
+        public bool AutoIncrementQueueFilenames
+        {
+            get => this.autoIncrementQueueFilenames;
+
+            set
+            {
+                this.autoIncrementQueueFilenames = value;
+                this.NotifyOfPropertyChange(() => this.AutoIncrementQueueFilenames);
             }
         }
 
@@ -1605,6 +1617,7 @@ namespace HandBrakeWPF.ViewModels
 
             // Enable auto naming feature.)
             this.AutomaticallyNameFiles = this.userSettingService.GetUserSetting<bool>(UserSettingConstants.AutoNaming);
+            this.AutoIncrementQueueFilenames = this.userSettingService.GetUserSetting<bool>(UserSettingConstants.AutoIncrementQueueFilenames);
 
             // Store the auto name path
             this.AutoNameDefaultPath = this.userSettingService.GetUserSetting<string>(UserSettingConstants.AutoNamePath) ?? string.Empty;
@@ -1883,6 +1896,7 @@ namespace HandBrakeWPF.ViewModels
 
             /* Output Files */
             this.userSettingService.SetUserSetting(UserSettingConstants.AutoNaming, this.AutomaticallyNameFiles);
+            this.userSettingService.SetUserSetting(UserSettingConstants.AutoIncrementQueueFilenames, this.AutoIncrementQueueFilenames);
             this.userSettingService.SetUserSetting(UserSettingConstants.AutoNameFormat, this.AutonameFormat);
             this.userSettingService.SetUserSetting(UserSettingConstants.AutoNamePath, this.AutoNameDefaultPath);
             this.userSettingService.SetUserSetting(UserSettingConstants.UseM4v, (int)this.SelectedMp4Extension);

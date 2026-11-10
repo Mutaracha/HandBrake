@@ -54,6 +54,7 @@
 
             <StackPanel Orientation="Vertical" Margin="20,0,0,0">
                 <CheckBox Content="{x:Static Properties:Resources.Options_AutoNameOutput}" IsChecked="{Binding AutomaticallyNameFiles}" />
+                <CheckBox Content="{x:Static Properties:Resources.Options_AutoIncrementQueueFilenames}" IsChecked="{Binding AutoIncrementQueueFilenames}" />
 
                 <Grid Margin="0,5,0,0">
                     <Grid.RowDefinitions>
