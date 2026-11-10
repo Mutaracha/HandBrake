@@ -669,16 +669,13 @@ namespace HandBrakeWPF.Controls
             } 
             else if (TimeSpan.TryParse(this.numberBox.Text, out newTimespanNumber))
             {
-                if (newTimespanNumber != TimeSpan.Zero)
+                int seconds = (int)Math.Round(newTimespanNumber.TotalSeconds, 0);
+                if (this.NumberIsValid(seconds) && seconds != this.Number)
                 {
-                    int seconds = (int)Math.Round(newTimespanNumber.TotalSeconds, 0);
-                    if (seconds != this.Number)
-                    {
-                        // While updating the binding we don't need to react to the change.
-                        this.suppressRefresh = true;
-                        this.Number = seconds;
-                        this.suppressRefresh = false;
-                    }
+                    // While updating the binding we don't need to react to the change.
+                    this.suppressRefresh = true;
+                    this.Number = seconds;
+                    this.suppressRefresh = false;
                 }
             }
         }

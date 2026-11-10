@@ -1,6 +1,9 @@
 ﻿<UserControl x:Class="HandBrakeWPF.Controls.TimeSpanBox"
+    x:Name="timeSpanBox"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:behaviours="clr-namespace:HandBrakeWPF.Behaviours"
 	Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style x:Key="Arrow" TargetType="Polygon">
@@ -141,7 +144,11 @@
 			PreviewMouseDown="NumberBoxPreviewMouseDown"
 			PreviewMouseUp="NumberBoxPreviewMouseUp"
 			TextChanged="NumberBoxTextChanged"
-			VerticalContentAlignment="Center"/>
+			VerticalContentAlignment="Center">
+            <i:Interaction.Behaviors>
+                <behaviours:TimeMaskBehavior IsEnabled="{Binding ShowTimeSpan, ElementName=timeSpanBox}" />
+            </i:Interaction.Behaviors>
+        </TextBox>
         <Grid
 			Name="upButton"
 			Grid.Column="1"

@@ -350,7 +350,7 @@ namespace HandBrakeWPF.Services
 
             defaults.Add(UserSettingConstants.ExcludedExtensions, new List<string> { "png", "jpg", "srt", "ass", "ssa", "txt" });
             defaults.Add(UserSettingConstants.RecursiveFolderScan, false);
-            defaults.Add(UserSettingConstants.DefaultRangeMode, DefaultRangeMode.Chapters);
+            defaults.Add(UserSettingConstants.DefaultRangeMode, DefaultRangeMode.Seconds);
             
             // Preview
             defaults.Add(UserSettingConstants.LastPreviewDuration, 30);
