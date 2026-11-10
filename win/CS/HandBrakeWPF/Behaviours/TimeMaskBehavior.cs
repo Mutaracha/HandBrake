@@ -184,7 +184,7 @@ namespace HandBrakeWPF.Behaviours
         private bool IsDigitValid(int digitIndex, char digit)
         {
             // The tens digits of minutes and seconds cannot exceed 5.
-            return (digitIndex != 3 && digitIndex != 5) || digit <= '5';
+            return (digitIndex != 2 && digitIndex != 4) || digit <= '5';
         }
 
         private void ClearSelection()
