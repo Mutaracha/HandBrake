@@ -530,8 +530,8 @@ namespace HandBrakeWPF.Controls
         /// </param>
         private void NumberBoxPreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            // If this mouse up is soon enough after an initial click on the box, select all.
-            if (this.SelectAllOnClick && DateTime.Now - this.lastFocusMouseDown < SelectAllThreshold)
+            // Keep the caret at the clicked position in time mode; select all only for numeric input.
+            if (this.SelectAllOnClick && !this.ShowTimeSpan && DateTime.Now - this.lastFocusMouseDown < SelectAllThreshold)
             {
                 this.Dispatcher.BeginInvoke(new Action(() => this.numberBox.SelectAll()));
             }
