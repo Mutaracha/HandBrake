@@ -59,7 +59,6 @@ jobs:
         with:
           name: LibHandBrake-x64
           path: ./build/libhb/hb.dll
-          archive: false
           if-no-files-found: error
 
   build_gui:
