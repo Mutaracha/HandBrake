@@ -85,21 +85,21 @@ jobs:
 
       - name: Build Windows GUI
         shell: pwsh
-        run: dotnet msbuild win\cs\build.xml /t:x64 /p:Profile=Release
+        run: dotnet msbuild win\cs\build.xml /t:x64
 
       - name: Create ZIP package
         shell: cmd
         run: |
-          for /f %i in ('git rev-parse --short HEAD') do set GITHASH=%i
-          set FILENAME=HandBrake-%GITHASH%-x64-Win_GUI.exe
-          set FILENAMEZIP=HandBrake-%GITHASH%-x64-Win_GUI.zip
-          cd win\CS\HandBrakeWPF\bin\publish
+          git rev-parse --short HEAD > gitHash.txt
+          set /p gitHash=<gitHash.txt
+          set FILENAME=HandBrake-%gitHash%-x64-Win_GUI.exe
+          set FILENAMEZIP=HandBrake-%gitHash%-x64-Win_GUI.zip
+          cd win/CS/HandBrakeWPF/bin/publish/
           move HandBrake-*-Win_GUI.exe %FILENAME%
           cd ..
-          rmdir /q /s Debug 2>nul
-          rmdir /q /s Release 2>nul
+          rmdir /q /s Debug
           move publish HandBrake
-          7z a %FILENAMEZIP% HandBrake -x!HandBrake\%FILENAME% -x!HandBrake\*.nsi -x!HandBrake\*.config -x!HandBrake\*.xml -x!HandBrake\*.pdb -x!HandBrake\*.bmp -x!HandBrake\*.zip -x!HandBrake\*.bz2 -x!HandBrake\*.msi -mx9
+          7z a %FILENAMEZIP% * -x!Release\ -x!HandBrake\%FILENAME% -x!HandBrake\*.nsi -x!HandBrake\*.config -x!*HandBrake\*.xml -x!*HandBrake\*.pdb -x!*HandBrake\*.bmp -x!HandBrake\*.zip -x!HandBrake\*.bz2 -x!HandBrake\*.msi -mx9
 
       - name: Upload Windows x64 ZIP
         uses: actions/upload-artifact@v7
